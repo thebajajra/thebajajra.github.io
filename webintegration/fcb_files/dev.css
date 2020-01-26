@@ -1,0 +1,26 @@
+.notranslate img {
+    width: auto;
+    width: initial;
+}
+
+.section-title{
+    line-height: 1.7;
+}
+
+nav.navigation.pagination {
+    text-align: center;
+}
+
+p.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    margin: 10px 0px;
+    padding: 12px;
+}
+
+p.error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+    margin: 10px 0px;
+    padding: 12px;
+}

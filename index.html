@@ -1,202 +1,198 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>    <html class="ie lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>    <html class="ie lt-ie9"> <![endif]-->
-<!--[if gt IE 8]> <html> <![endif]-->
-<!--[if !IE]><!--><html lang="en"><!-- <![endif]-->
+<html lang="en">
 <head>
-	<title>Happy Birthday</title>
-	<meta charset="UTF-8" />
-	<meta name="description" content="Happy Birthday Atulya">
-	<meta name="robots" content="index, follow" />
-	<link rel="author" href="https://plus.google.com/u/1/rahul/" /> 
-    <meta name="keywords" content="Birthday, Happy">
-    <!-- Strat of Facebook Meta -->
-    <meta property="og:type" content="E-Greeting" />
-    <meta property="og:image" content="favicon.ico" />
-    <meta property="og:description" content="Wish you a very Happy Birthday">
-    <!-- End of Facebook Meta Tags -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="stylesheet" type="text/css" href="loading.css">
-	<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
-	<!-- <link href='http://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'> -->
-	<link rel="stylesheet/less" href="cake.less">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SouqAlmal chatbot!</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="target/amigoapi/amigoapi.min.js"></script>
+    <script src="js/demoFunctions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.5.3/RecordRTC.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.4.0/adapter.min.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/common.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/hark.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 </head>
-
 <body>
-	<div class="loading"></div>
-	<audio class="song" controls loop>
-        <source src="hbd.mp3"></source>
-	   Your browser isn't invited for super fun audio time.
-    </audio>
-    <div class="balloons text-center" id="b1">
-    	<h2 style="color:#F2B300;">A</h2>
+    <!--
+    <div class="container">
+        <div class="row">
+            <h5>Configure demo:</h5>
+        </div>
+        <div class="row">
+            <div class="input-field col s10">
+                <input id="access_token" type="text" value="38772fe1c44b4cb7aadc94f38bc129eb" >
+                <label for="access_token">Access token</label>
+            </div>
+            <div class="col s2 input-field">
+                <a class="waves-effect waves-light btn" id="set_access_token">Set</a>
+            </div>
+        </div>
     </div>
-    <div class="balloons text-center" id="b2">
-    	<h2 style="color:#0719D4;">T</h2>
-    </div>
-	<div class="balloons text-center" id="b3">
-    	<h2 style="color:#D14D39;">U</h2>
-    </div>
-	<div class="balloons text-center" id="b4">
-    	<h2 style="color:#8FAD00;">L</h2>
-    </div>
-	<div class="balloons text-center" id="b5">
-    	<h2 style="color:#8377E4;">Y</h2>
-    </div>
-    <div class="balloons text-center" id="b6">
-    	<h2 style="color:#99C96A;">A</h2>
-    </div>
-    <!-- <div class="balloons text-center" id="b7">
-    	<h2 style="color:#20CFB4;">A</h2>
-    </div> -->
+    -->
+    <script type="text/javascript">
 
-    <img src="Balloon-Border.png" width="100%" class="balloon-border">
- 
-
-	<div class="container">
-		
-		<div class="row">
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_yellow"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_red"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_blue"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_green"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_pink"></div>
-			</div>
-			<div class="col-md-2 col-xs-2 bulb-holder">
-				<div class="bulb" id="bulb_orange"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<img src="banner.png" class="bannar">
-			</div>
-		</div>
-		<!-- <div class="row message">
-			<div class="col-md-12"><p>Khushbu</p></div>
-		</div> -->
-		<div class="row cake-cover">
-			<div class="col-md-12 texr-center">
-				<div class="cake">
-				  <div class="velas">
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				    <div class="fuego"></div>
-				  </div>
-				  <div class="cobertura"></div>
-				  <div class="bizcocho"></div>
-				</div>
-			</div>
-		</div>
-		<div class="row message">
-			<div class="col-md-12">
-				<p> <img src="1.jpeg" height="250" width="175"> </p>
-				<p> <img src="2.jpeg" height="250" width="175"> </p>
-				<p> <img src="3.jpeg" height="250" width="175"> days</p>
-				<p><img src="4.jpeg" height="250" width="175"></p>
-				<p><img src="5.jpeg" height="250" width="175"></p>
-				<p><img src="6.jpeg" height="250" width="175"></p>
-				<p><img src="7.jpeg" height="250" width="175"></p>
-				<p><img src="9.jpeg" height="250" width="175"></p>
-				<p><img src="10.jpeg" height="250" width="175"></p>
-				<p><img src="11.jpeg" height="250" width="175"></p>
-				<p><img src="12.jpeg" height="250" width="175"></p>
-				<p><img src="13.jpeg" height="250" width="175"></p>
-				<p><img src="14.jpeg" height="250" width="175"></p>
-				<p><img src="15.jpeg" height="250" width="175"></p>
-				<p><img src="16.jpeg" height="250" width="175"></p>
-				<p><img src="17.jpeg" height="250" width="175"></p>
-				<p><img src="18.jpeg" height="250" width="175"></p>
-				<p><img src="19.jpeg" height="250" width="175"></p>
-				<p><img src="20.jpeg" height="250" width="175"></p>
-				<p><img src="21.jpeg" height="250" width="175"></p>
-				<!-- <p>I wish you all the best</p>
-				<p>May your life be at ease</p>
-				<p>May all your wishes come true</p>
-				<p>Remember</p>
-				<p>your ambitions</p>
-				<p>you live as a free bird...</p>
-				<p>flying in the blue sky</p>
-				<p>Now things are different...</p>
-				<p>real story of your life</p>
-				<p>is just about to begin</p>
-				<p>indeed..</p>
-				<p>but...</p>
-				<p>don't worry</p>
-				<p>because...</p>
-				<p>God has your back</p>
-				<p>and</p>
-				<p>this year will be better</p>
-				<p>and I hope</p>
-				<p>you'll find...</p>
-				<p>happiness along the way</p>
-				<p>keep your spirit up</p>
-				<p>enjoy every single moment...</p>
-				<p>that you experience today</p>
-				<p>fill it with your most beautiful smile</p>
-				<p>and make it the best memory..</p>
-				<p>lastly...</p>
-				<p>I'd like to wish you one more time</p> -->
-				<p>A very happy birthday Atulya Kharbanda</p>
-			</div>
-		</div>
-		<div class="navbar navbar-fixed-bottom">
-			<div class="row">
-				<div class="col-md-6 text-center col-md-offset-3">
-					<button class="btn btn-primary" id="turn_on">Turn On Lights</button>
-					<button class="btn btn-primary" id="play">Play Music</button>
-					<button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
-					<button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
-					<button class="btn btn-primary" id="cake_fadein">Most Delicious Cake Ever</button>
-					<button class="btn btn-primary" id="light_candle"> Light Candle</button>
-					<button class="btn btn-primary" id="wish_message">Happy Birthday</button>
-					<button class="btn btn-primary" id="story">Memories</button>
-					<!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
-				</div>
-			</div>
-			<!-- <div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-2">
-			</div> -->
-		</div>
+function playsafchrom(){
 
 
-	</div>
+	if(!'speechSynthesis' in window){
+		instructions.innerHTML = "Speech synthesis is not supported in this browser.  Sorry.";
+		document.getElementById('ttsoptions').style.visibility = "hidden";
+	}
+	else {
+		document.getElementById('ttsoptions').style.visibility = "visible";
+		if(speechSynthesis.speaking){
+			return;
+		}
+		var text = document.getElementById('texttospeakinput').value;
+		// get the selected voice
+		var voice = speechSynthesis.getVoices().filter(function(voice){
+				return voice.name == voiceSelecter.value;
+			})[0];
+
+	    // Splitting each utterance up using punctuation is important.  Intra-utterance
+	    // punctuation will add silence to the tts which looks bad unless the mouth stops moving
+	    // correctly. Better to split it into separate utterances so play_for_duration will move when
+	    // talking, and be on frame 0 when not.
+
+	    // split everything betwen deliminators [.?,!], but include the deliminator.
+	    var substrings = text.match(/[^.?,!]+[.?,!]?/g);
+	    for (var i = 0, l = substrings.length; i < l; ++i) {
+	        var str = substrings[i].trim();
+
+	        // Make sure there is something to say other than the deliminator
+	        var numpunc = (str.match(/[.?,!]/g) || []).length;
+	        if (str.length - numpunc > 0) {
+
+	        	// suprisingly decent approximation for multiple languages.
+
+	       		// if you change the rate, you would have to adjust
+	            var speakingDurationEstimate = str.length * 50;
+	            // Chinese needs a different calculation.  Haven't tried other Asian languages.
+	            if (str.match(/[\u3400-\u9FBF]/)) {
+	                speakingDurationEstimate = str.length * 200;
+	            }
+
+	            var msg = new SpeechSynthesisUtterance();
+
+	            (function(dur){
+                	msg.addEventListener('start', function(){
+                		sup1.play_for_duration(dur);
+	                })
+                })(speakingDurationEstimate);
+
+	            // The end event is too inacurate to use for animation,
+	            // but perhaps it could be used elsewhere.  You might need to push
+	            // the msg to an array or aggressive garbage collection fill prevent the callback
+	            // from firing.
+	            //msg.addEventListener('end', function (){console.log("too late")}
+
+	            msg.text = str;
+	            //change voice here
+	            msg.voice = voice;
+
+	            window.speechSynthesis.speak(msg);
+	        }
+	    }
+	}
+}
+
+    </script>
+    <div id="preloader" style="opacity: 0; display: none;">
+        <noscript>
+            &lt;h1&gt;Please enable Javascript in your browser and reload.&lt;/h1&gt;
+        </noscript>
+    </div>
+
+    <div id="main-wrapper" class="b-agent-demo">
+        <div id="placeholder">
+            <h5>hi</h5>
+        </div>
+        <div class="b-agent-demo_header">
+            <div class="b-agent-demo_header-icon">
+                <div class="b-agent-demo_header-icon-align-helper">
+{#                    <img id="agent-avatar" src="./images/logo.png" alt="FCB">#}
+                    <img id="agent-avatar" src="https://img.favpng.com/9/20/5/bajaj-auto-bajaj-finserv-ltd-mortgage-loan-finance-png-favpng-iT71PUT5F2sGpGaApWhvP4zQm.jpg" alt="FCB">
+                </div>
+            </div>
+            <div class="b-agent-demo_header-wrapper">
+                <div class="b-agent-demo_header-agent-name">Bajaj Fin Serv</div>
+                <div class="b-agent-demo_header-description">SIH OCR Bot</div>
+            </div>
+        </div>
+
+        <!--<div class="container">
+            <div class="row">
+                <div>
+                </div>
+            </div>
+        </div>-->
+        <!--<div id="result">
+            &lt;!&ndash;div class="left-align flow-text">test</div>
+            <div class="right-align flow-text">one more test</div&ndash;&gt;
+        </div>-->
+
+        <div class="b-agent-demo_result" id="resultWrapper" >
+            <table class="b-agent-demo_result-table">
+                <tbody>
+                <tr>
+                    <td id="result"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="b-agent-demo_input">
+            <div class="queryField">
+            <input autocomplete="off" placeholder="Ask something..." id="q" type="text">
+            </div>
+            <div class='sendButton' id="attachbtn" style="display: none">
+                <input id="i" type="file" style="position:relative;overflow:hidden;display:none"/>
+                <div id="fakediv"><i class="material-icons">attach_file</i></div>
+            </div>
+            <div class='sendButton' id="submit_btn">
+            <button type='button' id='trigger' class='btn-submit'>
+                <i class="material-icons">mic</i>
+            </button>
+            </div>
+            <div class='sendButton' id="submit_btn">
+            <button type='button' class='btn-submit'>
+                <img src="./images/send-button.png">
+                <!-- <i class="fa fa-paper-plane" aria-hidden="true"></i> -->
+            </button>
+            </div>
+        </div>
+    </div>
+	</center>
+
+    <script>
+      $('#fakediv').click(function () {
+          $('#i').click();
+      });
+    </script>
+
+</div>
+    <script src='js/vad.js'></script>
+    <script defer src="js/layout.js"></script>
+    <script defer src="js/owl.carousel.js"></script>
+    <script defer src="js/owl.carousel.min.js"></script>
+    <script defer src="js/slick.min.js"></script>
+    <script defer src="js/script.js"></script>
+    <script defer src="js/fingerprint2.min.js"></script>
+    <script type="text/javascript">
+
+        </script>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-<script src="effect.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-58229732-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </html>
+
+

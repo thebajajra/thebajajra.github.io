@@ -1,0 +1,83 @@
+'use strict';
+
+jQuery(function ($) {
+    $(".new_tab").click(function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        window.open(this.href, '_blank');
+    });
+    $('.load-more-wrapper').click(function (e) {
+        e.preventDefault();
+        var button = $('.load-more'),
+                button_parent = $(this),
+                data = {
+                    'action': 'loadmore',
+                    'query': fcb_loadmore_params.posts, // that's how we get params from wp_localize_script() function
+                    'page': fcb_loadmore_params.current_page
+                };
+
+        $.ajax({
+            url: fcb_loadmore_params.ajaxurl, // AJAX handler
+            data: data,
+            type: 'POST',
+            beforeSend: function (xhr) {
+                button.text('Loading...'); // change the button text, you can also add a preloader image
+                console.log(data);
+            },
+            success: function (data) {
+                if (data) {
+                    button.text('Load More');
+                    $(".ajax_content").append(data);
+//                    button_parent.prev().before(data); // insert new posts
+                    fcb_loadmore_params.current_page++;
+                    if (fcb_loadmore_params.current_page == fcb_loadmore_params.max_page)
+                        button.text("No More Posts");  // if last page, remove the button
+
+                    // you can also fire the "post-load" event here if you use a plugin that requires it
+                    // $( document.body ).trigger( 'post-load' );
+                } else {
+                    button.text("No More Posts"); // if no data, remove the button as well
+
+                }
+            }
+        });
+    });
+
+    $(".dd").change(function () {
+        var address = $(this).val();
+        console.log(address);
+        window.location.replace(address);
+    });
+    $("#splash_country").change(function () {
+        var address = $(this).val();
+        console.log(address);
+        window.location.replace(address);
+    });
+    $('p:empty').remove();
+    $("a.menu-Group").click(function (e) {
+        e.preventDefault();
+        window.open(this.href);
+        return false;
+    });
+//
+//    $('#downloads_dd').change(function () {
+//        $("#filter").submit();
+//    });
+//    $('#filter').submit(function () {
+//        var filter = $('#filter');
+//        $.ajax({
+//            url: filter.attr('action'),
+//            data: filter.serialize(), // form data
+//            type: filter.attr('method'), // POST
+//            beforeSend: function (xhr) {
+//                filter.find('button').text('Processing...'); // changing the button label
+//            },
+//            success: function (data) {
+//                filter.find('button').text('Apply filter'); // changing the button label back
+//                $('#response').html(data); // insert data
+//            }
+//        });
+//        return false;
+//    });
+
+});

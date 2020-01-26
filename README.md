@@ -1,3 +1,0 @@
-# thebajajra
-
-Happy Birthday Atulya

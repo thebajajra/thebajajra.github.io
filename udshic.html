@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to First Capital Bank!</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="target/amigoapi/amigoapi.min.js"></script>
+    <script src="js/demoFunctions.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/RecordRTC.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/common.js"></script>
+    <script src="https://cdn.webrtc-experiment.com/hark.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+    <!--
+    <div class="container">
+        <div class="row">
+            <h5>Configure demo:</h5>
+        </div>
+        <div class="row">
+            <div class="input-field col s10">
+                <input id="access_token" type="text" value="38772fe1c44b4cb7aadc94f38bc129eb" >
+                <label for="access_token">Access token</label>
+            </div>
+            <div class="col s2 input-field">
+                <a class="waves-effect waves-light btn" id="set_access_token">Set</a>
+            </div>
+        </div>
+    </div>
+    -->
+    <script type="text/javascript">
+    	
+function playsafchrom(){
+
+
+	if(!'speechSynthesis' in window){
+		instructions.innerHTML = "Speech synthesis is not supported in this browser.  Sorry.";
+		document.getElementById('ttsoptions').style.visibility = "hidden";
+	}
+	else {
+		document.getElementById('ttsoptions').style.visibility = "visible";
+		if(speechSynthesis.speaking){
+			return;
+		}
+		var text = document.getElementById('texttospeakinput').value;
+		// get the selected voice
+		var voice = speechSynthesis.getVoices().filter(function(voice){
+				return voice.name == voiceSelecter.value;
+			})[0];
+
+	    // Splitting each utterance up using punctuation is important.  Intra-utterance
+	    // punctuation will add silence to the tts which looks bad unless the mouth stops moving
+	    // correctly. Better to split it into separate utterances so play_for_duration will move when
+	    // talking, and be on frame 0 when not. 
+
+	    // split everything betwen deliminators [.?,!], but include the deliminator.
+	    var substrings = text.match(/[^.?,!]+[.?,!]?/g);
+	    for (var i = 0, l = substrings.length; i < l; ++i) {
+	        var str = substrings[i].trim();
+
+	        // Make sure there is something to say other than the deliminator
+	        var numpunc = (str.match(/[.?,!]/g) || []).length;
+	        if (str.length - numpunc > 0) {
+
+	        	// suprisingly decent approximation for multiple languages.
+
+	       		// if you change the rate, you would have to adjust
+	            var speakingDurationEstimate = str.length * 50;
+	            // Chinese needs a different calculation.  Haven't tried other Asian languages.
+	            if (str.match(/[\u3400-\u9FBF]/)) {
+	                speakingDurationEstimate = str.length * 200;
+	            }
+
+	            var msg = new SpeechSynthesisUtterance();
+
+	            (function(dur){
+                	msg.addEventListener('start', function(){
+                		sup1.play_for_duration(dur);
+	                })
+                })(speakingDurationEstimate);
+
+	            // The end event is too inacurate to use for animation,
+	            // but perhaps it could be used elsewhere.  You might need to push 
+	            // the msg to an array or aggressive garbage collection fill prevent the callback
+	            // from firing.
+	            //msg.addEventListener('end', function (){console.log("too late")}			                
+	            
+	            msg.text = str;
+	            //change voice here
+	            msg.voice = voice;
+
+	            window.speechSynthesis.speak(msg);
+	        }
+	    }
+	}
+}
+
+    </script>
+    <div id="preloader" style="opacity: 0; display: none;">
+        <noscript>
+            &lt;h1&gt;Please enable Javascript in your browser and reload.&lt;/h1&gt;
+        </noscript>
+    </div>
+
+    <div id="main-wrapper" class="b-agent-demo">
+        <div id="placeholder">
+            <h5>hi</h5>
+        </div>
+        <div class="b-agent-demo_header">
+            <div class="b-agent-demo_header-icon">
+                <div class="b-agent-demo_header-icon-align-helper">
+                    <img id="agent-avatar" src="./images/logo.png" alt="FCB">
+                </div>
+            </div>
+            <div class="b-agent-demo_header-wrapper">
+                <div class="b-agent-demo_header-agent-name">FCB</div>
+                <div class="b-agent-demo_header-description">First Capital Bank</div>
+            </div>
+        </div>
+
+        <!--<div class="container">
+            <div class="row">
+                <div>
+                </div>
+            </div>
+        </div>-->
+        <!--<div id="result">
+            &lt;!&ndash;div class="left-align flow-text">test</div>
+            <div class="right-align flow-text">one more test</div&ndash;&gt;
+        </div>-->
+
+        <div class="b-agent-demo_result" id="resultWrapper" >
+            <table class="b-agent-demo_result-table">
+                <tbody>
+                <tr>
+                    <td id="result"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="b-agent-demo_input">
+            <div class="queryField">
+            <input placeholder="Ask something..." id="q" type="text">
+            </div>
+            <div class='sendButton' id="submit_btn">
+            <button type='button' id='trigger' class='btn-submit'>
+                <i class="material-icons">mic</i>
+            </button>
+            </div>
+            <div class='sendButton' id="submit_btn">
+            <button type='button' class='btn-submit'>
+                <img src="./images/send-button.png">
+                <!-- <i class="fa fa-paper-plane" aria-hidden="true"></i> -->
+            </button>
+            </div>
+        </div>
+
+    </div>
+
+	</center>
+		<!--<script>-->
+			<!--$(document).ready(function () {-->
+				<!--$('#voiceSelecter').val('Google UK English Female');-->
+			<!--})-->
+		<!--</script>-->
+	
+</div>
+    <script defer src="js/layout.js"></script>
+    <script defer src="js/owl.carousel.js"></script>
+    <script defer src="js/owl.carousel.min.js"></script>
+    <script defer src="js/slick.min.js"></script>
+    <script defer src="js/script.js"></script>
+
+    <script defer src="js/fingerprint2.min.js"></script>
+     <script>
+        // var audio = document.querySelector('audio');
+        function captureMicrophone(callback) {
+            // btnReleaseMicrophone.disabled = false;
+            if(microphone) {
+                callback(microphone);
+                return;
+            }
+            if(typeof navigator.mediaDevices === 'undefined' || !navigator.mediaDevices.getUserMedia) {
+                alert('This browser does not supports WebRTC getUserMedia API.');
+                if(!!navigator.getUserMedia) {
+                    alert('This browser seems supporting deprecated getUserMedia API.');
+                }
+            }
+            navigator.mediaDevices.getUserMedia({
+                audio: isEdge ? true : {
+                    echoCancellation: false
+                }
+            }).then(function(mic) {
+                callback(mic);
+            }).catch(function(error) {
+                alert('Unable to capture your microphone. Please check console logs.');
+                console.error(error);
+            });
+        };
+
+        function releaseMicrophone(){
+            if(microphone) {
+                microphone.stop();
+                microphone = null;
+            }
+        };
+        
+        var isEdge = navigator.userAgent.indexOf('Edge') !== -1 && (!!navigator.msSaveOrOpenBlob || !!navigator.msSaveBlob);
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        var recorder; // globally accessible
+        var microphone;
+        var btnStartRecording = document.getElementById('trigger');
+        var btnStopRecording = document.getElementById('stop');
+        // var btnReleaseMicrophone = document.querySelector('#btn-release-microphone');
+        // var btnDownloadRecording = document.getElementById('btn-download-recording');
+        btnStartRecording.onclick = function() {
+            this.disabled = true;
+            this.style.border = '';
+            this.style.fontSize = '';
+            if (!microphone) {
+                captureMicrophone(function(mic) {
+                    microphone = mic;
+                    if(isSafari) {
+                        // replaceAudio();
+                        // audio.muted = true;
+                        // audio.srcObject = microphone;
+                        btnStartRecording.disabled = false;
+                        btnStartRecording.style.border = '1px solid red';
+                        btnStartRecording.style.fontSize = '150%';
+                        alert('Please click startRecording button again. First time we tried to access your microphone. Now we will record it.');
+                        return;
+                    }
+                    click(btnStartRecording);
+                });
+                return;
+            }
+            // replaceAudio();
+            // audio.muted = true;
+            // audio.srcObject = microphone;
+            var options = {
+                type: 'audio',
+                numberOfAudioChannels: isEdge ? 1 : 2,
+                checkForInactiveTracks: true,
+                bufferSize: 16384
+            };
+            if(isSafari || isEdge) {
+                options.recorderType = StereoAudioRecorder;
+            }
+            if(navigator.platform && navigator.platform.toString().toLowerCase().indexOf('win') === -1) {
+                options.sampleRate = 48000; // or 44100 or remove this line for default
+            }
+            if(isSafari) {
+                options.sampleRate = 44100;
+                options.bufferSize = 4096;
+                options.numberOfAudioChannels = 2;
+            }
+            if(recorder) {
+                recorder.destroy();
+                recorder = null;
+            }
+            recorder = RecordRTC(microphone, options);
+            speechEvents = hark(microphone, options);
+            recorder.startRecording();
+            //btnStopRecording.disabled = false;
+            // btnDownloadRecording.disabled = true;
+
+        speechEvents.on('stopped_speaking', function() {
+            this.disabled = true;
+            btnStartRecording.disabled = false;
+            if(isSafari) {
+                releaseMicrophone();
+               }
+            recorder.stopRecording(function(){
+                var blob = this.getBlob();
+                var file = new File([blob], getFileName('mp3'), {
+                type: 'audio/mp3'
+                });
+                var formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: "https://bot.bankbuddy.ai/amanda/stt/",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    success: function (data) {
+                        console.log(data.transcript);
+                        k = data.transcript
+			sendText(k).then(function(response) {
+                          var responseNode = createResponseNode();
+                          setResponseOnNode(response, responseNode);
+                          resultWrapperDiv.scrollTop = resultWrapperDiv.scrollHeight;                   
+			});
+                    }
+                });
+            });
+        });
+        };
+        function click(el) {
+            el.disabled = false; // make sure that element is not disabled
+            var evt = document.createEvent('Event');
+            evt.initEvent('click', true, true);
+            el.dispatchEvent(evt);
+        }
+        function getRandomString() {
+            if (window.crypto && window.crypto.getRandomValues && navigator.userAgent.indexOf('Safari') === -1) {
+                var a = window.crypto.getRandomValues(new Uint32Array(3)),
+                    token = '';
+                for (var i = 0, l = a.length; i < l; i++) {
+                    token += a[i].toString(36);
+                }
+                return token;
+            } else {
+                return (Math.random() * new Date().getTime()).toString(36).replace(/\./g, '');
+            }
+        }
+        function getFileName(fileExtension) {
+            var d = new Date();
+            var year = d.getFullYear();
+            var month = d.getMonth();
+            var date = d.getDate();
+            return 'RecordRTC-' + year + month + date + '-' + getRandomString() + '.' + fileExtension;
+        }
+        function SaveToDisk(fileURL, fileName) {
+            // for non-IE
+            if (!window.ActiveXObject) {
+                var save = document.createElement('a');
+                save.href = fileURL;
+                save.download = fileName || 'unknown';
+                save.style = 'display:none;opacity:0;color:transparent;';
+                (document.body || document.documentElement).appendChild(save);
+                if (typeof save.click === 'function') {
+                    save.click();
+                } else {
+                    save.target = '_blank';
+                    var event = document.createEvent('Event');
+                    event.initEvent('click', true, true);
+                    save.dispatchEvent(event);
+                }
+                (window.URL || window.webkitURL).revokeObjectURL(save.href);
+            }
+            // for IE
+            else if (!!window.ActiveXObject && document.execCommand) {
+                var _window = window.open(fileURL, '_blank');
+                _window.document.close();
+                _window.document.execCommand('SaveAs', true, fileName || fileURL)
+                _window.close();
+            }
+        }
+        </script>
+
+</body>
+</html>
+
