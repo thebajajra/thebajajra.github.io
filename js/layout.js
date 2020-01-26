@@ -84,7 +84,7 @@
                                 if(counter == 1){
                                     //Driving License
                                     // jQuery('#attachbtn').css('display', 'block');
-                                    var d1 = {'data': [{'title': 'Document Upload', 'subtitle': 'Great! Now upload a scanned copy of the back side of your licence'}]};
+                                    var d1 = {'data': [{'title': 'Document Upload', 'subtitle': 'Great! Now upload the second report'}]};
                                     var R1 = createResponseNode();
                                     setResponseOnNode(d1, R1);
                                 }else if(counter == 2){
@@ -607,7 +607,7 @@
                             if(counter == 0){
                                 //Emirates ID
                                 jQuery('#attachbtn').css('display', 'block');
-                                var data = {'data': [{'title': 'Document Upload', 'subtitle': 'I understand you want to get quote for your car insurance. Please upload a scanned copy of your Driving Licence (front side) by clicking on the attach button below.'}]};
+                                var data = {'data': [{'title': 'Document Upload', 'subtitle': 'Please upload your document'}]};
                                 var R = createResponseNode();
                                 setResponseOnNode(data, R);
                             }
@@ -620,7 +620,7 @@
                             if(counter == 0){
                                 //Emirates ID
                                 jQuery('#attachbtn').css('display', 'block');
-                                var data = {'data': [{'title': 'Document Upload', 'subtitle': 'I understand you want to get quote for your Heycar insurance. Please upload a scanned copy of your Driving Licence (front side) by clicking on the attach button below.'}]};
+                                var data = {'data': [{'title': 'Document Upload', 'subtitle': 'Please upload your document.'}]};
                                 var R = createResponseNode();
                                 setResponseOnNode(data, R);
                             }
